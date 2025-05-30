@@ -1,53 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LGD Chess Arena</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-  <script src="abi.js"></script>
-  <script defer src="main.js"></script>
-  <style>
-    body {
-      font-family: Arial;
-      padding: 20px;
-      background: #f2f2f2;
-    }
-    #gameList {
-      margin-top: 20px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    button {
-      margin: 5px 0;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    input {
-      padding: 8px;
-      margin-top: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>♟ LGD Chess Arena</h1>
+  <div class="container">
+    <h1>♟️ LGD Chess Arena</h1>
 
-  <p><strong>Your Address:</strong> <span id="userAddress">Not connected</span></p>
-  
-  <button onclick="connectWallet()">Connect Wallet</button>
-  <br><br>
-  <button onclick="startGame()">Start New Game (250,000 LGD)</button>
-  <br><br>
+    <!-- Wallet -->
+    <div>
+      <button id="connectButton">🔌 Connect Wallet</button>
+      <p id="walletAddress">Wallet: Not connected</p>
+    </div>
 
-  <div>
-    <label>Enter Game ID to Join:</label><br>
-    <input type="number" id="joinGameId" placeholder="Game ID" />
-    <button onclick="joinGame()">Join Game</button>
+    <hr />
+
+    <!-- Join Game -->
+    <div>
+      <h2>🎮 Join Game</h2>
+      <input type="number" id="joinGameId" placeholder="Enter Game ID (0-14)" min="0" max="14" />
+      <button id="joinButton">Join Game</button>
+    </div>
+
+    <hr />
+
+    <!-- Propose Winner -->
+    <div>
+      <h2>🏆 Propose Winner</h2>
+      <input type="number" id="winnerGameId" placeholder="Game ID (0-14)" />
+      <input type="text" id="winnerAddress" placeholder="Winner Address (0x...)" />
+      <button id="proposeButton">Propose Winner</button>
+    </div>
+
+    <hr />
+
+    <!-- Game Info -->
+    <div>
+      <h2>📊 Game Info</h2>
+      <input type="number" id="infoGameId" placeholder="Game ID (0-14)" />
+      <button id="infoButton">Get Info</button>
+      <pre id="gameInfo"></pre>
+    </div>
   </div>
 
-  <div id="gameList">
-    <h3>Active Games</h3>
-    <ul id="activeGames"></ul>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+  <script src="abi.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
