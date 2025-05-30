@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LGD Chess Arena</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <script src="abi.js"></script>
+  <script defer src="main.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+    #gameList {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    button {
+      margin: 5px 0;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input {
+      padding: 8px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>♟ LGD Chess Arena</h1>
+
+  <p><strong>Your Address:</strong> <span id="userAddress">Not connected</span></p>
+  
+  <button onclick="connectWallet()">Connect Wallet</button>
+  <br><br>
+  <button onclick="startGame()">Start New Game (250,000 LGD)</button>
+  <br><br>
+
+  <div>
+    <label>Enter Game ID to Join:</label><br>
+    <input type="number" id="joinGameId" placeholder="Game ID" />
+    <button onclick="joinGame()">Join Game</button>
+  </div>
+
+  <div id="gameList">
+    <h3>Active Games</h3>
+    <ul id="activeGames"></ul>
+  </div>
+</body>
+</html>
