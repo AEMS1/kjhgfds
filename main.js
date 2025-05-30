@@ -1,84 +1,68 @@
-let web3;
+let provider;
+let signer;
 let contract;
 let userAddress;
 
-// آدرس قرارداد شما در شبکه BSC
-const contractAddress = "0x..."; // ← آدرس قرارداد خود را اینجا قرار بده
+const CONTRACT_ADDRESS = "0xa8F88821F9A5Ea4Fef29c41Ca191290415e9FaF8";
 
-// مقدار ورودی بازی (۲۵۰,۰۰۰ توکن LGD)
-const ENTRY_FEE = web3.utils.toWei("250000", "ether"); // اگر توکن 18 رقم دارد
-
-window.addEventListener("load", async () => {
+async function connectWallet() {
   if (window.ethereum) {
-    web3 = new Web3(window.ethereum);
-    contract = new web3.eth.Contract(contractABI, contractAddress);
-    await loadActiveGames();
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    signer = provider.getSigner();
+    userAddress = await signer.getAddress();
+    document.getElementById("walletAddress").innerText = Wallet: ${userAddress};
+    contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
   } else {
-    alert("Please install MetaMask!");
+    alert("MetaMask not found!");
+  }
+}
+
+document.getElementById("connectButton").addEventListener("click", connectWallet);
+
+document.getElementById("joinButton").addEventListener("click", async () => {
+  const gameId = parseInt(document.getElementById("joinGameId").value);
+  if (isNaN(gameId)) return alert("Enter valid game ID");
+
+  try {
+    const tx = await contract.joinGame(gameId);
+    await tx.wait();
+    alert("Joined game successfully!");
+  } catch (err) {
+    console.error(err);
+    alert("Join failed.");
   }
 });
 
-async function connectWallet() {
-  const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-  userAddress = accounts[0];
-  document.getElementById("userAddress").innerText = userAddress;
-}
+document.getElementById("proposeButton").addEventListener("click", async () => {
+  const gameId = parseInt(document.getElementById("winnerGameId").value);
+  const winner = document.getElementById("winnerAddress").value;
 
-// شروع بازی جدید
-async function startGame() {
-  if (!userAddress) await connectWallet();
+  if (!ethers.utils.isAddress(winner)) return alert("Invalid address");
 
   try {
-    await contract.methods.startNewGame().send({
-      from: userAddress
-    });
-
-    alert("Game started!");
-    loadActiveGames();
+    const tx = await contract.proposeWinner(gameId, winner);
+    await tx.wait();
+    alert("Winner proposed successfully!");
   } catch (err) {
     console.error(err);
-    alert("Error starting game.");
+    alert("Propose failed.");
   }
-}
+});
 
-// پیوستن به بازی
-async function joinGame() {
-  if (!userAddress) await connectWallet();
-
-  const gameId = document.getElementById("joinGameId").value;
-  if (!gameId) return alert("Please enter a Game ID");
-
+document.getElementById("infoButton").addEventListener("click", async () => {
+  const gameId = parseInt(document.getElementById("infoGameId").value);
   try {
-    await contract.methods.joinGame(gameId).send({
-      from: userAddress
-    });
-
-    alert("Joined the game!");
-    loadActiveGames();
+    const info = await contract.getGame(gameId);
+    document.getElementById("gameInfo").innerText = `
+Game ID: ${gameId}
+Player 1: ${info[0]}
+Player 2: ${info[1]}
+Winner Proposal: ${info[2]}
+Status: ${["Empty", "Waiting", "Ongoing", "Finished", "Disputed"][info[3]]}
+    `;
   } catch (err) {
     console.error(err);
-    alert("Error joining game.");
+    alert("Failed to get game info.");
   }
-}
-
-// نمایش لیست بازی‌ها
-async function loadActiveGames() {
-  if (!contract) return;
-
-  try {
-    const totalGames = await contract.methods.totalGames().call();
-    const listEl = document.getElementById("activeGames");
-    listEl.innerHTML = "";
-
-    for (let i = 1; i <= totalGames; i++) {
-      const game = await contract.methods.games(i).call();
-      if (!game.finished) {
-        const li = document.createElement("li");
-        li.innerText = Game #${i} - Player1: ${game.player1.slice(0, 8)}..., Player2: ${game.player2 === "0x0000000000000000000000000000000000000000" ? "Waiting..." : game.player2.slice(0, 8)};
-        listEl.appendChild(li);
-      }
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
+});
