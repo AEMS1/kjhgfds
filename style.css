@@ -1,0 +1,24 @@
+body {
+  direction: ltr;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+#board {
+  width: 400px;
+  margin: 20px auto;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+}
