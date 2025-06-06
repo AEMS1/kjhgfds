@@ -1,3 +1,4 @@
+
 let web3;
 let account;
 let contract;
