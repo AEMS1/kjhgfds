@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Play Chess</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Chess Game</h1>
+    <div id="board" style="width: 400px; margin: 0 auto;"></div>
+    <p id="status">Waiting for players...</p>
+    <button id="payAndJoinBtn">Pay 25,000 LGD and Join Game</button>
+    <button id="claimRewardBtn" style="display:none;">Claim Reward</button>
+    <button id="resignBtn" style="display:none;">Resign</button>
+  </div>
+
+  <script src="abi.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
