@@ -1,35 +1,47 @@
-
 let web3;
 let account;
 let contract;
-const tokenAddress = "0x4751C0DE56EFB3770615097347cbF131D302498A";
-const contractAddress = "YOUR_CONTRACT_ADDRESS";
-const tokenDecimals = 18;
-const tokenAmount = web3?.utils.toBN("25000").mul(web3?.utils.toBN("10").pow(web3?.utils.toBN(tokenDecimals)));
+const contractAddress = "0xYourSmartContractAddress"; // Replace with real one
+const tokenAddress = "0x4751C0DE56EFB3770615097347cbF131D302498A"; // LGD Token
+const entryFee = web3?.utils.toWei("25000", "ether");
 
 window.addEventListener("load", async () => {
   if (window.ethereum) {
     web3 = new Web3(window.ethereum);
-    document.getElementById("connectWalletBtn").onclick = connectWallet;
-    document.getElementById("startGameBtn").onclick = startGame;
-    contract = new web3.eth.Contract(abi, contractAddress);
   } else {
-    alert("MetaMask not found");
+    alert("Please install MetaMask to use this site.");
   }
 });
 
-async function connectWallet() {
+document.getElementById("connectWalletBtn")?.addEventListener("click", async () => {
   const accounts = await ethereum.request({ method: "eth_requestAccounts" });
   account = accounts[0];
-  document.getElementById("walletAddress").innerText = account;
-}
+  document.getElementById("walletAddress").textContent = Wallet: ${account};
+  contract = new web3.eth.Contract(contractABI, contractAddress);
+});
 
-async function startGame() {
+document.getElementById("payAndJoinBtn")?.addEventListener("click", async () => {
+  if (!account) return alert("Connect wallet first.");
+  const token = new web3.eth.Contract([
+    {
+      constant: false,
+      inputs: [
+        { name: "spender", type: "address" },
+        { name: "amount", type: "uint256" }
+      ],
+      name: "approve",
+      outputs: [{ name: "", type: "bool" }],
+      type: "function"
+    }
+  ], tokenAddress);
+
+  const amount = web3.utils.toWei("25000", "ether");
+
   try {
+    await token.methods.approve(contractAddress, amount).send({ from: account });
     await contract.methods.enterGame().send({ from: account });
-    alert("Game Started!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to start game.");
+    alert("Payment successful! Waiting for opponent...");
+  } catch (e) {
+    alert("Transaction failed: " + e.message);
   }
-}
+});
