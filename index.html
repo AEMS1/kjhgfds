@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LGD Chess Online</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <h1>LGD Token Chess</h1>
+
+    <div id="wallet-section">
+      <button id="connectWalletBtn">Connect Wallet</button>
+      <p id="walletAddress"></p>
+    </div>
+
+    <div id="game-section">
+      <div id="chessboard"></div>
+      <div id="status"></div>
+      <button id="startGameBtn">Start Game (Pay 25,000 LGD)</button>
+    </div>
+
+    <div id="game-result" style="display:none;">
+      <h2 id="resultText"></h2>
+      <button onclick="location.reload()">Play Again</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/js/chessboard.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/css/chessboard.min.css"/>
+  <script src="contract/abi.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
