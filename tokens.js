@@ -1,12 +1,12 @@
 const tokens = [
   {
-    symbol: "BUSD",
-    address: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+    symbol: "LGD",
+    address: "0x4751C0DE56EFB3770615097347cbF131D302498A",
     decimals: 18
   },
   {
-    symbol: "WBNB",
-    address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    symbol: "BUSD",
+    address: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
     decimals: 18
   },
   {
@@ -15,8 +15,13 @@ const tokens = [
     decimals: 18
   },
   {
-    symbol: "LGD",
-    address: "0x4751C0DE56EFB3770615097347cbF131D302498A",
+    symbol: "WBNB",
+    address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    decimals: 18
+  },
+  {
+    symbol: "CAKE",
+    address: "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
     decimals: 18
   }
 ];
