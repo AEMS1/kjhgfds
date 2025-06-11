@@ -2,26 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Swap DEX</title>
+  <title>LGD Swap DEX</title>
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="tokens.js"></script>
   <script src="main.js" defer></script>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, select, button { margin: 10px; padding: 8px; font-size: 16px; }
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f3f3f3;
+    }
+    h1 {
+      text-align: center;
+    }
+    .box {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #00b894;
+      color: white;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #019874;
+    }
   </style>
 </head>
 <body>
   <h1>LGD Swap DEX</h1>
-  <button id="connectWallet">Connect Wallet</button>
-  <br>
-  <select id="tokenIn"></select>
-  <input type="text" id="amountIn" placeholder="Amount In">
-  <br>
-  <select id="tokenOut"></select>
-  <input type="text" id="amountOut" placeholder="Amount Out" readonly>
-  <br>
-  <button id="swapButton">Swap</button>
-  <p id="status"></p>
+  <div class="box">
+    <button id="connectWallet">🔗 Connect Wallet</button>
+
+    <label>From:</label>
+    <select id="tokenIn"></select>
+    <input type="text" id="amountIn" placeholder="Amount In">
+
+    <label>To:</label>
+    <select id="tokenOut"></select>
+    <input type="text" id="amountOut" placeholder="Amount Out" readonly>
+
+    <button id="swapButton">💱 Swap</button>
+  </div>
 </body>
 </html>
