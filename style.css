@@ -1,37 +1,94 @@
+* {
+  box-sizing: border-box;
+}
 
 body {
-  background-color: #0d1117;
-  color: #fff;
-  font-family: sans-serif;
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-}
-.container {
-  background: #161b22;
-  padding: 30px;
-  border-radius: 12px;
-  width: 400px;
-  box-shadow: 0 0 15px #000;
-}
-.swap-box {
+  margin: 0; padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-input, select, button {
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-}
-button {
-  background: #3b82f6;
-  color: white;
-  cursor: pointer;
-}
-#priceBox, #feeBox {
-  font-size: 14px;
-  margin-top: 5px;
+  align-items: center;
+  min-height: 100vh;
 }
 
+header {
+  margin: 20px 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #58a6ff;
+}
+
+.swap-box {
+  background: #161b22;
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.token-select label,
+.amount-input label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-size: 1rem;
+  outline: none;
+  border: 1.5px solid #30363d;
+  transition: border-color 0.3s ease;
+}
+
+select:hover, input[type="number"]:hover,
+select:focus, input[type="number"]:focus {
+  border-color: #58a6ff;
+}
+
+.price-info p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+}
+
+button {
+  padding: 12px 0;
+  background: #238636;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background: #444c56;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background: #2ea043;
+}
+
+#statusMsg {
+  min-height: 20px;
+  margin-top: 8px;
+  font-weight: 600;
+  text-align: center;
+  color: #58a6ff;
+}
