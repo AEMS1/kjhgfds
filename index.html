@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AEMS DEX</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <button id="connectWallet">Connect Wallet</button>
+  </header>
+
+  <main class="swap-box">
+    <h2>Swap</h2>
+
+    <label>From:</label>
+    <select id="fromToken"></select>
+    <input type="number" id="fromAmount" placeholder="Amount">
+
+    <label>To:</label>
+    <select id="toToken"></select>
+    <div id="livePrice"></div>
+
+    <button id="swapButton">Swap</button>
+
+    <div id="swapInfo">
+      <p id="rateDisplay"></p>
+      <p id="amountReceivedDisplay"></p>
+      <p id="feeDisplay"></p>
+    </div>
+
+    <a href="auction.html" class="link">Join Auction</a>
+  </main>
+
+  <script src="tokenlist.js"></script>
+  <script src="abi.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

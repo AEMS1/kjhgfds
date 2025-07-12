@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auction</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" class="logo">
+    <button id="connectWallet">Connect Wallet</button>
+  </header>
+
+  <main>
+    <h2>VIP Auction</h2>
+    <button id="payEntry">Pay Entry Fee (1500 AMS)</button>
+
+    <div id="auctionSections" style="display:none;">
+      <div class="auction-block">
+        <h3>30-Day Auction</h3>
+        <p>Reward: 10000 AMS</p>
+        <p>Ends in: <span id="countdown30"></span></p>
+        <input type="number" id="bid30" placeholder="Enter BNB amount">
+        <button onclick="bid(30)">Bid</button>
+        <ul id="list30"></ul>
+      </div>
+
+      <div class="auction-block">
+        <h3>60-Day Auction</h3>
+        <p>Reward: 35000 AMS</p>
+        <p>Ends in: <span id="countdown60"></span></p>
+        <input type="number" id="bid60" placeholder="Enter BNB amount">
+        <button onclick="bid(60)">Bid</button>
+        <ul id="list60"></ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="abi.js"></script>
+  <script src="auction.js"></script>
+</body>
+</html>
