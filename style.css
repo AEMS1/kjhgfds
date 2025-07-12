@@ -1,0 +1,35 @@
+body {
+  background-color: #0d1117;
+  color: #fff;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+.container {
+  background: #161b22;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 0 15px #000;
+}
+.swap-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input, select, button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+}
+button {
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+#priceBox, #feeBox {
+  font-size: 14px;
+  margin-top: 5px;
+}
