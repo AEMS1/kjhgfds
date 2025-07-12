@@ -1,36 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AMS DEX</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
-  <script src="abi.js"></script>
-  <script src="tokenlist.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AMS Swap</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>AMS DEX</h1>
-    <button id="connectWallet">Connect Wallet</button>
+  <header>
+    <h1>AMS Swap</h1>
+  </header>
 
-    <div class="swap-box">
-      <label>From:</label>
-      <select id="fromToken"></select>
-      <input type="number" id="fromAmount" placeholder="Amount to swap">
+  <main>
+    <section class="swap-box">
+      <div class="token-select">
+        <label for="fromToken">From Token:</label>
+        <select id="fromToken"></select>
+      </div>
 
-      <label>To:</label>
-      <select id="toToken"></select>
-      <input type="text" id="toAmount" disabled placeholder="Estimated amount">
+      <div class="amount-input">
+        <label for="fromAmount">Amount:</label>
+        <input type="number" id="fromAmount" min="0" step="any" placeholder="0.0" />
+      </div>
 
-      <div id="priceBox">Price: -</div>
-      <div id="feeBox">Fee (1%): -</div>
+      <div class="token-select">
+        <label for="toToken">To Token:</label>
+        <select id="toToken"></select>
+      </div>
 
-      <button id="swapButton">Swap</button>
-    </div>
-  </div>
+      <div class="price-info">
+        <p>Price (USD): <span id="priceUsd">-</span></p>
+        <p>Expected Receive: <span id="expectedReceive">-</span></p>
+        <p>Fee: <span id="feePercent">1%</span></p>
+      </div>
 
+      <button id="connectWalletBtn">Connect Wallet</button>
+      <button id="swapBtn" disabled>Swap</button>
+
+      <p id="statusMsg"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+  <script src="abi.js"></script>
+  <script src="tokenList.js"></script>
+  <script src="utils.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
-
