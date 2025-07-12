@@ -26,3 +26,4 @@ function populateTokenSelects() {
     optionTo.value = token.symbol;
     optionTo.textContent = token.symbol;
     toTokenSelect.appendChild(optionTo
+                              
